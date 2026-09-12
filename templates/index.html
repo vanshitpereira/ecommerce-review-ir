@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>E-Commerce Review Retrieval System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+    <!-- ============================= -->
+    <!-- HEADER -->
+    <!-- ============================= -->
+
+    <header class="header">
+
+        <div class="header-content">
+
+            <div class="logo">
+
+                <div class="logo-icon">
+                    🔍
+                </div>
+
+                <div>
+                    <h1>E-Commerce Review Retrieval System</h1>
+
+                    <p>
+                        Information Retrieval using TF-IDF and Cosine Similarity
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ============================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ============================= -->
+
+    <main class="container">
+
+
+        <!-- SEARCH SECTION -->
+
+        <section class="search-section">
+
+            <h2>Search Product Reviews</h2>
+
+            <p class="description">
+                Enter keywords to find the most relevant customer reviews.
+            </p>
+
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Example: battery life, camera quality, sound quality..."
+                    autocomplete="off"
+                >
+
+                <button id="searchButton">
+
+                    🔍 Search
+
+                </button>
+
+            </div>
+
+
+            <!-- Example searches -->
+
+            <div class="examples">
+
+                <span>Try:</span>
+
+                <button class="example-btn">
+                    battery life
+                </button>
+
+                <button class="example-btn">
+                    camera quality
+                </button>
+
+                <button class="example-btn">
+                    sound quality
+                </button>
+
+                <button class="example-btn">
+                    product quality
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- SEARCH STATUS -->
+        <!-- ============================= -->
+
+        <section class="results-header">
+
+            <div>
+
+                <h2 id="resultsTitle">
+                    Search Results
+                </h2>
+
+                <p id="resultsInfo">
+                    Enter a query to retrieve relevant reviews.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- LOADING -->
+        <!-- ============================= -->
+
+        <div id="loading" class="loading hidden">
+
+            <div class="spinner"></div>
+
+            <p>
+                Searching reviews...
+            </p>
+
+        </div>
+
+
+        <!-- ============================= -->
+        <!-- RESULTS -->
+        <!-- ============================= -->
+
+        <section id="resultsContainer" class="results-container">
+
+            <!-- Results will be inserted here using JavaScript -->
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- NO RESULTS -->
+        <!-- ============================= -->
+
+        <div id="noResults" class="no-results hidden">
+
+            <div class="no-results-icon">
+                🔎
+            </div>
+
+            <h3>No relevant reviews found</h3>
+
+            <p>
+                Try using different or more specific keywords.
+            </p>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- ============================= -->
+    <!-- FOOTER -->
+    <!-- ============================= -->
+
+    <footer class="footer">
+
+        <p>
+            E-Commerce Product Review Retrieval System
+        </p>
+
+        <p>
+            IR Mini Project | TF-IDF + Cosine Similarity
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
