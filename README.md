@@ -37,105 +37,49 @@ The main objectives of the project are:
 9. To evaluate the retrieval performance using IR evaluation metrics.
 
 ---
+## 🏗️ System Architecture
 
-# 🏗️ System Architecture
+The E-Commerce Product Review Retrieval System follows a layered architecture consisting of data collection, text preprocessing, TF-IDF indexing and retrieval, query processing, and a Flask-based web application.
 
-The overall architecture of the system is shown below:
+![System Architecture](docs/system-architecture.png)
 
-```text
-                    ┌─────────────────────────┐
-                    │   Amazon Reviews        │
-                    │   Dataset               │
-                    │   30,000 Reviews        │
-                    └────────────┬────────────┘
-                                 │
-                                 ▼
-                    ┌─────────────────────────┐
-                    │   Data Preprocessing     │
-                    │                         │
-                    │ • Lowercasing            │
-                    │ • HTML Removal           │
-                    │ • URL Removal            │
-                    │ • Special Character      │
-                    │   Removal                │
-                    │ • Tokenization           │
-                    │ • Stopword Removal       │
-                    │ • Lemmatization          │
-                    └────────────┬────────────┘
-                                 │
-                                 ▼
-                    ┌─────────────────────────┐
-                    │    TF-IDF Vectorizer    │
-                    │                         │
-                    │ • Unigrams               │
-                    │ • Bigrams                │
-                    │ • 10,000 Features        │
-                    └────────────┬────────────┘
-                                 │
-                                 ▼
-                    ┌─────────────────────────┐
-                    │    TF-IDF Matrix        │
-                    │                         │
-                    │ 30,000 × 10,000         │
-                    └────────────┬────────────┘
-                                 │
-                                 │
-             ┌───────────────────┘
-             │
-             ▼
-     ┌───────────────────┐
-     │    User Query     │
-     │                   │
-     │ "battery life"    │
-     └─────────┬─────────┘
-               │
-               ▼
-     ┌─────────────────────────┐
-     │ Query Preprocessing     │
-     │                         │
-     │ • Lowercasing           │
-     │ • Cleaning              │
-     │ • Stopword Removal      │
-     │ • Lemmatization         │
-     └────────────┬────────────┘
-                  │
-                  ▼
-     ┌─────────────────────────┐
-     │ Query TF-IDF Vector     │
-     └────────────┬────────────┘
-                  │
-                  ▼
-     ┌─────────────────────────┐
-     │ Cosine Similarity        │
-     │                         │
-     │ Query vs 30,000 Reviews │
-     └────────────┬────────────┘
-                  │
-                  ▼
-     ┌─────────────────────────┐
-     │ Relevance Ranking       │
-     │                         │
-     │ Highest similarity      │
-     │ → Lowest similarity     │
-     └────────────┬────────────┘
-                  │
-                  ▼
-     ┌─────────────────────────┐
-     │ Top 10 Relevant Reviews  │
-     └────────────┬────────────┘
-                  │
-                  ▼
-     ┌─────────────────────────┐
-     │ Flask Web Application    │
-     │                         │
-     │ • Search Results        │
-     │ • Rating Filter         │
-     │ • Sorting               │
-     │ • Relevance Score       │
-     └─────────────────────────┘
-```
+### Architecture Components
 
----
+1. **Data Layer**
+   - Uses the Amazon Reviews Multi English Dataset.
+   - The current project uses 30,000 product reviews.
+   - Review information includes review ID, review text, rating, and rating text.
+
+2. **Data Preprocessing**
+   - HTML and URL removal
+   - Special-character removal
+   - Extra-space normalization
+   - Tokenization
+   - Stopword removal
+   - Lemmatization
+   - Generates the processed review dataset.
+
+3. **Indexing and Retrieval**
+   - TF-IDF vectorization is applied to the processed reviews.
+   - Uses unigram and bigram features.
+   - The TF-IDF representation contains 10,000 features.
+   - The resulting TF-IDF matrix contains 30,000 review vectors.
+   - Cosine similarity is used to measure similarity between the query and reviews.
+
+4. **Search / Query Processing**
+   - The user enters a search query.
+   - The query undergoes the same preprocessing steps as the reviews.
+   - The processed query is transformed using the trained TF-IDF vectorizer.
+   - Cosine similarity is calculated against the review collection.
+   - Reviews are ranked according to their relevance score.
+   - The top 10 relevant reviews are displayed.
+
+5. **Web Application**
+   - The frontend provides the search interface and result display.
+   - The Flask backend connects the web interface with the retrieval system.
+   - Users can filter results by rating and sort results by relevance or rating.
+   - Search results are returned to the frontend in JSON format.
+
 
 # 🔄 System Workflow
 
