@@ -41,7 +41,7 @@ The main objectives of the project are:
 
 The E-Commerce Product Review Retrieval System follows a layered architecture consisting of data collection, text preprocessing, TF-IDF indexing and retrieval, query processing, and a Flask-based web application.
 
-![System Architecture](docs/system-architecture.png)
+![System Architecture](docs/architecture.png)
 
 ### Architecture Components
 
